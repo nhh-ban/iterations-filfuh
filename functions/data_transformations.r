@@ -1,3 +1,4 @@
+# Problem 2
 transform_metadata_to_df <- 
   function(metadata){
     stations_metadata[[1]] %>% 
@@ -12,3 +13,11 @@ transform_metadata_to_df <-
       ) %>% 
       select(-location)
   }
+
+to_iso8601 <- 
+  function(date, offset){
+    iso8601(date+days(offset)) %>% 
+      paste0("Z")
+  }
+
+

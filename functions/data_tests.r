@@ -62,7 +62,7 @@ test_stations_metadata_nmissing <-
     }
   }
 
-# Cheks if the timezone is UTC format
+# Checks if the timezone is UTC format
 test_stations_metadata_latestdata_timezone <-
   function(df) {
     
