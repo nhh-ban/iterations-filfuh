@@ -14,10 +14,13 @@ transform_metadata_to_df <-
       select(-location)
   }
 
+# Problem 4a
 to_iso8601 <- 
   function(date, offset){
     iso8601(date+days(offset)) %>% 
       paste0("Z")
   }
+# Test
+to_iso8601(as_datetime("2016-09-01 10:11:12"),0)
 
-
+# Problem 5
