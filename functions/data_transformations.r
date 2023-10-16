@@ -23,4 +23,23 @@ to_iso8601 <-
 # Test
 to_iso8601(as_datetime("2016-09-01 10:11:12"),0)
 
-# Problem 5
+# Transform volume function
+transform_volumes <- function(json_data) {
+  # Extract the 'edges' list containing data
+  edges <- json_data$data$trafficData$volume$byHour$edges
+  
+  # Create a data frame with 'from', 'to', and 'volume' columns
+  df <- data.frame(
+    from = sapply(edges, function(edge) edge$node$from),
+    to = sapply(edges, function(edge) edge$node$to),
+    volume = sapply(edges, function(edge) edge$node$total$volumeNumbers$volume),
+    stringsAsFactors = FALSE
+  )
+  
+  # Convert the 'from' column to date-time objects
+  df$from <- as.POSIXct(df$from, format = "%Y-%m-%dT%H:%M:%S", tz = "GMT")
+  
+  # Return the transformed data frame
+  return(df)
+}
+
